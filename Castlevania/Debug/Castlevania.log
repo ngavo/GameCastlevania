@@ -1,0 +1,9 @@
+﻿  GSprite.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(90): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(108): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(127): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(162): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(163): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Castlevania.vcxproj -> E:\projectUIT2018\game\Castlevania\Debug\Castlevania.exe
+  Castlevania.vcxproj -> E:\projectUIT2018\game\Castlevania\Debug\Castlevania.pdb (Partial PDB)
