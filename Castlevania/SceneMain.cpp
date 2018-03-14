@@ -39,7 +39,7 @@ void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 {
 	this->_kitty = new kitty();
 	this->background = new Background();
-	this->background->readfile("8473_true-no-brick.txt");
+	this->background->readfile2("8473_true-no-brick.txt");
 }
 
 void SceneMain::OnKeyDown(int KeyCode)

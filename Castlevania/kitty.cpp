@@ -6,8 +6,8 @@ kitty::kitty()
 	texture = new GTexture("simon_right.bmp", 6, 5, 29);
 	sprite = new GSprite(texture, 0, 28, 2);
 	this->_vx = VX;
-	this->_posx = 100;
-	this->_posy = 100;
+	this->_posx = 75;
+	this->_posy = 75;
 	camera = new GCamera();
 	
 }
