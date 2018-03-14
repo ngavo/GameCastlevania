@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="CTimer.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="CTimer.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -149,6 +151,9 @@
     <Image Include="bg.bmp" />
     <Image Include="kitty_right.bmp" />
     <Image Include="simon_right.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="8473_true-no-brick.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

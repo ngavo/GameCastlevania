@@ -7,6 +7,8 @@ SceneMain::SceneMain(int _nCmdShow): CGame(_nCmdShow)
 
 void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 {
+	d3ddv->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 0));
+	this->background->DrawBackground(this->_kitty->camera->viewport.x);
 	this->_kitty->RenderFrame(d3ddv,t);
 }
 
@@ -36,6 +38,8 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 {
 	this->_kitty = new kitty();
+	this->background = new Background();
+	this->background->readfile("8473_true-no-brick.txt");
 }
 
 void SceneMain::OnKeyDown(int KeyCode)

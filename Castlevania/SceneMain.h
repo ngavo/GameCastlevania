@@ -3,12 +3,14 @@
 
 #include "Game.h"
 #include "kitty.h"
+#include "Background.h"
 class SceneMain: public CGame
 {
 public: 	
 	SceneMain(int _nCmdShow);
 	~SceneMain();	
 	kitty * _kitty;
+	Background* background;
 
 protected:	
 	

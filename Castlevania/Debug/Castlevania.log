@@ -1,9 +1,46 @@
-﻿  GSprite.cpp
+﻿  Utils.cpp
+  SceneMain.cpp
   c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(90): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(108): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(127): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(162): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-e:\projectuit2018\game\castlevania\castlevania\gsprite.cpp(163): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Castlevania.vcxproj -> E:\projectUIT2018\game\Castlevania\Debug\Castlevania.exe
-  Castlevania.vcxproj -> E:\projectUIT2018\game\Castlevania\Debug\Castlevania.pdb (Partial PDB)
+e:\projectuit2018\doangame\gamecastlevania\castlevania\scenemain.cpp(11): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\scenemain.cpp(19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  main.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  kitty.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\projectuit2018\doangame\gamecastlevania\castlevania\kitty.cpp(20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\kitty.cpp(25): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\kitty.cpp(29): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+  GTexture.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gtexture.cpp(43): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
+  GSprite.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gsprite.cpp(90): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gsprite.cpp(108): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gsprite.cpp(127): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gsprite.cpp(162): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gsprite.cpp(163): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Global.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  GCamera.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gcamera.cpp(6): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gcamera.cpp(22): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gcamera.cpp(32): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+e:\projectuit2018\doangame\gamecastlevania\castlevania\gcamera.cpp(39): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+  GAudio.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  GameObject.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Game.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  dsutil.cpp
+  CTimer.cpp
+  Background.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+e:\projectuit2018\doangame\gamecastlevania\castlevania\background.cpp(25): warning C4101: 'arrt': unreferenced local variable
+e:\projectuit2018\doangame\gamecastlevania\castlevania\background.cpp(67): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+  Generating Code...
+e:\projectuit2018\doangame\gamecastlevania\castlevania\game.cpp(58): warning C4715: 'CGame::InitWindow': not all control paths return a value
+  Castlevania.vcxproj -> E:\projectUIT2018\DoAnGame\GameCastlevania\Debug\Castlevania.exe
+  Castlevania.vcxproj -> E:\projectUIT2018\DoAnGame\GameCastlevania\Debug\Castlevania.pdb (Partial PDB)
