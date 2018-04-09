@@ -4,19 +4,30 @@
 
 GameObject::GameObject()
 {
+	hienthi = true;
 }
 
 void GameObject::Init(int _X, int _Y)
 {
 }
-void GameObject::Update(const float &_DeltaTime)
+void GameObject::Update(int _DeltaTime)
 {
 }
 	 // update per frame
-void GameObject::Render()
+void GameObject::Render(int x, int y)
 {
 
- }
+}
+
+RECT GameObject::getRect()
+{
+	RECT rect;
+	rect.left = _x - _width/2;
+	rect.top = _y - _height/2;
+	rect.right = rect.left + _width;
+	rect.bottom = rect.top + _height;
+	return rect;
+}
 void GameObject::Destroy()
 {
 

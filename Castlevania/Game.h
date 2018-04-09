@@ -4,17 +4,19 @@
 #include <d3d9.h>
 #include "Global.h"
 #include <dinput.h>
+#include "Background.h";
 
 class CGame
 {
 public:
 	CGame(int _nCmdShow);	
-
+	CGame();
 	void InitGame();
 
 	void GameRun();
 
 	void GameEnd();
+	
 
 protected:
 	int nCmdShow;
@@ -26,9 +28,11 @@ protected:
 	int InitDirectX();
 
 	void InitKeyboard();
+	void InitBackbuffer();
 
 	void ProcessKeyBoard();
 
+	virtual void UpdateFrame(int Delta);
 	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int Delta);
 	virtual void LoadResources(LPDIRECT3DDEVICE9 d3ddv);
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta);
@@ -47,7 +51,7 @@ protected:
 	BYTE  _KeyStates[256]; // DirectInput keyboard state buffer 
 
 	DIDEVICEOBJECTDATA _KeyEvents[ GL_KEY_BUFFER_SIZE ]; // Buffered keyboard data
-	LPDIRECT3DSURFACE9 CreateSurfaceFromFile(LPDIRECT3DDEVICE9 d3ddv, LPCTSTR FilePath);
+	
 };
 
 #endif

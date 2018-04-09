@@ -1,7 +1,2 @@
-﻿  kitty.cpp
-  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-e:\projectuit2018\doangame\gamecastlevania\castlevania\kitty.cpp(20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-e:\projectuit2018\doangame\gamecastlevania\castlevania\kitty.cpp(25): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-e:\projectuit2018\doangame\gamecastlevania\castlevania\kitty.cpp(29): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-  Castlevania.vcxproj -> E:\projectUIT2018\DoAnGame\GameCastlevania\Debug\Castlevania.exe
-  Castlevania.vcxproj -> E:\projectUIT2018\DoAnGame\GameCastlevania\Debug\Castlevania.pdb (Partial PDB)
+﻿  Castlevania.vcxproj -> E:\projectUIT2018\game\lamvacham\Castlevania\Debug\Castlevania.exe
+  Castlevania.vcxproj -> E:\projectUIT2018\game\lamvacham\Castlevania\Debug\Castlevania.pdb (Partial PDB)

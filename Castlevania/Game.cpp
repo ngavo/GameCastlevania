@@ -2,9 +2,12 @@
 #include "Game.h"
 #include <d3d9.h>
 
+CGame::CGame(){}
 CGame::CGame(int _nnCmdShow)
 {
 	nCmdShow = _nnCmdShow;
+	
+	
 }
 
 int CGame::InitWindow(int nCmdShow) 
@@ -150,7 +153,9 @@ void CGame::InitGame()
 	InitDirectX();
 	InitKeyboard();
 	LoadResources(G_Device);
-	G_BackBuffer = CreateSurfaceFromFile(G_Device, "8473_true-no-brick.png");
+	/*G_BackBuffer = CreateSurfaceFromFile(G_Device, "8473_true-no-brick.png");*/
+	InitBackbuffer();
+	
 }
 
 void CGame::ProcessKeyBoard()
@@ -188,12 +193,15 @@ void CGame::ProcessKeyBoard()
 void CGame::OnKeyUp(int KeyCode) { }
 void CGame::OnKeyDown(int KeyCode) { }
 
-void GameDraw(int deltaTime)
+void CGame::GameDraw(int deltaTime)
 {
 	if (G_Device->BeginScene()) 
 	{
 		// Clear back buffer with BLACK
-		G_Device->ColorFill(G_BackBuffer,NULL,D3DCOLOR_XRGB(255,255,255));
+		/*G_Device->ColorFill(G_BackBuffer,NULL,D3DCOLOR_XRGB(255,255,255));*/
+
+		
+		
 		G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 		//----- start drawing
 
@@ -229,7 +237,8 @@ void CGame::GameRun()
 		_DeltaTime = now - frame_start; 
 		if (_DeltaTime >= tick_per_frame)
 		{
-			frame_start = now;
+			frame_start = GetTickCount();
+			UpdateFrame(_DeltaTime);
 			RenderFrame();
 		}
 
@@ -241,18 +250,11 @@ void CGame::GameRun()
 
 void CGame::RenderFrame()
 {
-	
+	G_Device->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 0));
 	if (G_Device->BeginScene()) 
 	{
-		LPDIRECT3DSURFACE9 _BackBuffer;
-		G_Device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &_BackBuffer);
 		
-		G_Device->StretchRect(
-			G_BackBuffer,			// from 
-			NULL,				// which portion?
-			_BackBuffer,		// to 
-			NULL,				// which portion?
-			D3DTEXF_NONE);
+
 		RenderFrame(G_Device, _DeltaTime);
 		G_Device->EndScene();
 	}
@@ -264,6 +266,7 @@ void CGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 	d3ddv->ColorFill(G_BackBuffer,NULL,D3DCOLOR_XRGB(255,255,255));
 }
 void CGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) { }
+void CGame::UpdateFrame(int Delta){}
 
 void CGame::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) 
 {
@@ -286,46 +289,13 @@ void CGame::GameEnd()
 	if (G_DirectX!=NULL) G_DirectX->Release();
 }
 
-LPDIRECT3DSURFACE9 CGame::CreateSurfaceFromFile(LPDIRECT3DDEVICE9 d3ddv, LPCTSTR FilePath)
+
+void CGame::InitBackbuffer()
 {
-	D3DXIMAGE_INFO info;
-
-	HRESULT result = D3DXGetImageInfoFromFile(FilePath, &info);
-	if (result != D3D_OK)
-	{
-		/*trace(L"[ERROR] Failed to get image info '%s'", FilePath);*/
-		return NULL;
-	}
-	d3ddv->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
-
-	LPDIRECT3DSURFACE9 surface;
-
-	d3ddv->CreateOffscreenPlainSurface(
-		info.Width,				// width
-		info.Height,			// height
-		D3DFMT_X8R8G8B8,		// format
-		D3DPOOL_DEFAULT,
-		&surface,
-		NULL);
-
-	result = D3DXLoadSurfaceFromFile(
-		surface, 		// surface
-		NULL,			// destination palette	
-		NULL,			// destination rectangle 
-		FilePath,
-		NULL,			// source rectangle
-		D3DX_DEFAULT, 	// filter image
-		D3DCOLOR_XRGB(0, 0, 0),				// transparency (0 = none)
-		NULL);			// reserved
-
-	if (result != D3D_OK)
-	{
-		/*trace(L"[ERROR] D3DXLoadSurfaceFromFile() failed");*/
-		return NULL;
-	}
-
-	return surface;
+	G_Device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &G_BackBuffer);
 }
+
+
 
 LRESULT CALLBACK CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

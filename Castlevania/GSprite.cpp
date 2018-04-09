@@ -49,9 +49,14 @@ GSprite::~GSprite()
 
 void GSprite::Next() 
 {
-	_index++;
-	if(_index<_start || _index > _end)
+	
+	if(_index>=_start && _index < _end)
+		_index++;
+	else
+	{
 		_index = _start;
+	}
+		
 }
 
 void GSprite::Reset()
@@ -90,6 +95,8 @@ void GSprite::Draw(int X, int Y)
 	D3DXVECTOR3 center((float)_texture->FrameWidth/2, _texture->FrameHeight/2, 0);
 	//position.x = X - _texture->FrameWidth/2;
 	//position.y = Y - _texture->FrameHeight/2;
+
+
 	G_SpriteHandler->Draw(
 		_texture->Texture,
 		&srect,
@@ -97,6 +104,9 @@ void GSprite::Draw(int X, int Y)
 		&position,
 		0xFFFFFFFF //color
 	);
+
+	
+	
 }
 
 void GSprite::DrawFlipX(int x, int y)

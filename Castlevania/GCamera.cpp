@@ -19,7 +19,7 @@ D3DXVECTOR2 GCamera::Transform(int x, int y)
 	matrix._41 = -viewport.x;
 	matrix._42 = viewport.y;
 
-	D3DXVECTOR3 pos3(x ,y ,1);	
+	D3DXVECTOR3 pos3(x ,y ,0);	
 	D3DXVECTOR4 MatrixResult;
 	D3DXVec3Transform (&MatrixResult,&pos3,&matrix);
 
@@ -42,4 +42,21 @@ void GCamera::UpdateCamera(int x)
 void GCamera::UpdateCamera(int &w, int &h)
 {
 	//Tự viết dự vào hướng dẫn của GV LT
+}
+
+void GCamera::setViewPort(D3DXVECTOR2 view)
+{
+	viewport.x = view.x;
+	viewport.y = view.y;
+}
+RECT GCamera::GetRegion(float left, float top, float width, float height)
+{
+	
+	RECT rect;
+	rect.left = left;
+	rect.top = top;
+	rect.right = left + width;
+	rect.bottom = top + height;
+	return rect;
+
 }

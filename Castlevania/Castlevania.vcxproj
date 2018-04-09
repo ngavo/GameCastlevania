@@ -117,43 +117,84 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BackgroundQuadtree.h" />
+    <ClInclude Include="Bats.h" />
+    <ClInclude Include="BoneDragons.h" />
     <ClInclude Include="CTimer.h" />
+    <ClInclude Include="Dragon.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
+    <ClInclude Include="Eagles.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FishMan.h" />
+    <ClInclude Include="Fleaman.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GAudio.h" />
     <ClInclude Include="GCamera.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="GSprite.h" />
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="kitty.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="NenNho.h" />
+    <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="QuadTreeNode.h" />
+    <ClInclude Include="QuadTreeObject.h" />
     <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SweptAABB.h" />
+    <ClInclude Include="TileBackground.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="whip.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BackgroundQuadtree.cpp" />
+    <ClCompile Include="Bats.cpp" />
+    <ClCompile Include="BoneDragons.cpp" />
     <ClCompile Include="CTimer.cpp" />
+    <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="dsutil.cpp" />
+    <ClCompile Include="Eagles.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FishMan.cpp" />
+    <ClCompile Include="Fleaman.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GAudio.cpp" />
     <ClCompile Include="GCamera.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GSprite.cpp" />
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="kitty.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="NenNho.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
+    <ClCompile Include="QuadTreeNode.cpp" />
+    <ClCompile Include="QuadTreeObject.cpp" />
     <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="TileBackground.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="whip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="1.png" />
+    <Image Include="8473_true-no-brick.png" />
+    <Image Include="background_state_12.PNG" />
     <Image Include="bg.bmp" />
+    <Image Include="ground.png" />
     <Image Include="kitty_right.bmp" />
     <Image Include="simon_right.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="8473_true-no-brick.txt" />
+    <Text Include="map-GameObj-Quadtree.txt" />
+    <Text Include="map-GameObj.txt" />
+    <Text Include="NenNhoQuadTree-GameObj-Quadtree.txt" />
+    <Text Include="NenNhoQuadTree-GameObj.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

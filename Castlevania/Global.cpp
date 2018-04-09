@@ -19,7 +19,7 @@ int G_NextForm;
 bool		G_IsInitedDX = false;
 int			G_GameDepth;
 char*		G_GameName = "Sample TH";
-int			G_FrameRate = 30;
+int			G_FrameRate = 20;
 int			G_ColorMode;
 bool		G_IsFullScreen = false;
 D3DFORMAT	G_BackBufferFormat;
