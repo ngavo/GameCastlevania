@@ -16,7 +16,7 @@ public:
 	float _y;
 	int _width;
 	int _height;
-
+	float _detalx;
 	bool hienthi;
 
 
@@ -32,7 +32,7 @@ public:
 	// ====== các phương thức ảo =====
 	virtual void Init(int _X, int _Y);		// reset object
 	virtual void Update(int _DeltaTime);	// update per frame
-	virtual void Render(int x,int y);							// render per frame
+	virtual void Render(float x,float y);							// render per frame
 	virtual void Destroy();					// clear sub object, without delete this
 	~GameObject();
 };

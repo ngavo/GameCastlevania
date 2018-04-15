@@ -14,7 +14,7 @@ void GameObject::Update(int _DeltaTime)
 {
 }
 	 // update per frame
-void GameObject::Render(int x, int y)
+void GameObject::Render(float x, float y)
 {
 
 }

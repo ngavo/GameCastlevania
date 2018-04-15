@@ -10,7 +10,7 @@ public:
 	GSprite*sprite;
 	GCamera*camera;
 	/*Ground(int id, int type, float x, float y, int width, int height);*/
-	void Render(int x,int y);
+	void Render(float x,float y);
 	void Update(int time);
 	~NenNho();
 };

@@ -15,10 +15,12 @@ public:
 	bool IsActack;
 	bool IsDown;
 	bool CheckLoLung;
+	bool dungtrenMove;
 	int postground=100;
 	D3DXVECTOR3 velocity;
 	float _vx;
 	float _vy;
+	float _xtrenmove;
 	float _vg;
 	int nhaydendocao;
 	DWORD last_time;

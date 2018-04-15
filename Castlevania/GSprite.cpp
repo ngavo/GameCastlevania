@@ -81,7 +81,7 @@ void GSprite::Update(int ellapseTime)
 	}
 }
 
-void GSprite::Draw(int X, int Y)
+void GSprite::Draw(float X, float Y)
 {
 	RECT srect;
 
@@ -109,7 +109,7 @@ void GSprite::Draw(int X, int Y)
 	
 }
 
-void GSprite::DrawFlipX(int x, int y)
+void GSprite::DrawFlipX(float x, float y)
 {
 	D3DXMATRIX oldMt;
 	G_SpriteHandler->GetTransform(&oldMt);

@@ -15,7 +15,7 @@ NenNho::NenNho(int id, int type, float x, float y, int width, int height)
 	this->camera = new  GCamera();
 }
 
-void NenNho::Render(int x, int y)
+void NenNho::Render(float x, float y)
 {
 	if (this->hienthi)
 	{

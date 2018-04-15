@@ -9,6 +9,7 @@
 #include "Eagles.h"
 #include "Fleaman.h"
 #include "BoneDragons.h"
+#include "Enemy.h"
 using namespace std;
 class Map
 {
@@ -18,13 +19,18 @@ public:
 	Eagles*eagles;
 	Fleaman*fleaman;
 	BoneDragons*bonedragones;*/
+
+	vector<Bats*> ListBats;
+	vector<FishMan*> ListFishMan;
+	vector<Enemy*> ListEnemys;
+
 	vector <GameObject*> ListObjects;//danh sach toan bo object trong Map 
 	QuadTreeObject*quadtree;
 	void LoadObjectFromFile(string filepath);
 	void LoadMap(string filepath);
 	void LoadObject(int IDObject, int Type, float x, float y, int width, int height);
 	void LoadListObjectInWorld(RECT rect);
-	void Draw(int x,int y);
+	void Draw(float x,float y);
 	void Update(int time, kitty* simon);
 	int CountRowObject(string filepath);
 	int CountRowBetween(string filepath, int RowObject);

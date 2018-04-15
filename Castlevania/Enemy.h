@@ -11,6 +11,8 @@ public:
 	int _id;
 	float _x;
 	float _y;
+	bool hienthi;
+	bool die;
 	int _width;
 	int _height;
 	virtual void Init(float x, float y,int width,int height );

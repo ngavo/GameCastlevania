@@ -16,7 +16,7 @@ public:
 	GCamera*camera;
 	Ground(int id, int type, float x, float y, int width, int height);
 	void Update(int time);
-	void Render(int x, int y);
+	void Render(float x, float y);
 	~Ground();
 };
 

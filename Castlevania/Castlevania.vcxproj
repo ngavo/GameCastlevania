@@ -138,6 +138,7 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="kitty.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Moving.h" />
     <ClInclude Include="NenNho.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="QuadTreeNode.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="kitty.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Moving.cpp" />
     <ClCompile Include="NenNho.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="QuadTreeNode.cpp" />

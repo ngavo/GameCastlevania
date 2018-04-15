@@ -34,10 +34,10 @@ public:
 	void Update(int ellapseTime);
 
 	// Render current sprite at location (X,Y) at the target surface
-	void Draw(int x, int y);
+	void Draw(float x, float y);
 	
 	//Render with scale (-1, 1)
-	void DrawFlipX(int x, int y);
+	void DrawFlipX(float x, float y);
 
 	//render with scale (1, -1)
 	void DrawFlipY(int x, int y);

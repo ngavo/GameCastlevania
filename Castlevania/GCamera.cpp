@@ -11,7 +11,7 @@ void GCamera::SetSizeMap(int _max, int _min)
 	_maxSize = _max;
 	_minSize = _min;
 }
-D3DXVECTOR2 GCamera::Transform(int x, int y)
+D3DXVECTOR2 GCamera::Transform(float x, float y)
 {
 	D3DXMATRIX matrix;
 	D3DXMatrixIdentity (&matrix);
@@ -33,7 +33,7 @@ D3DXVECTOR3 GCamera::CenterSprite(int x, int y)
 	return pCenter;
 }
 
-void GCamera::UpdateCamera(int x)
+void GCamera::UpdateCamera(float x)
 {
 	//Tự viết dự vào hướng dẫn của GV LT
 	viewport.x =  x - G_ScreenWidth / 2;

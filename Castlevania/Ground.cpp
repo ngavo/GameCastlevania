@@ -15,7 +15,7 @@ Ground::Ground(int id, int type, float x, float y, int width, int height)
 	this->camera = new  GCamera();
 }
 
-void Ground::Render(int x, int y)
+void Ground::Render(float x, float y)
 {
 	/*D3DXVECTOR2 view;
 	view.x = x;

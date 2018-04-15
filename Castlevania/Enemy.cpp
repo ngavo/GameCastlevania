@@ -12,6 +12,8 @@ void Enemy::Init(float x, float y, int width, int height)
 	_y = y;
 	_width = width;
 	_height = height;
+	hienthi = false;
+	die = false;
 }
 
 void Enemy::Update(int time)

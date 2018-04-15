@@ -2,6 +2,7 @@
 #include "Ground.h"
 #include "NenNho.h"
 #include "Bats.h"
+#include "Moving.h"
 Map::Map()
 {
 	quadtree = new QuadTreeObject();
@@ -36,6 +37,9 @@ void Map::LoadObjectFromFile(string filepath)
 void Map::LoadObject(int id, int type, float x, float y, int width, int height)
 {
 	GameObject*object = NULL;
+	/*Bats*bat = NULL;
+	FishMan*fishman = NULL;*/
+	Enemy*enemy = NULL;
 	switch (type)
 	{
 	case 12:
@@ -44,6 +48,17 @@ void Map::LoadObject(int id, int type, float x, float y, int width, int height)
 	case 11:
 		object = new NenNho(id, type, x, y, width, height);
 		break;
+	case 19:
+		object = new Moving(id, type, x, y, width, height);
+		break;
+	case 0:
+		enemy = new Bats();
+		enemy->Init(x, y, width, height);
+		break;
+	case 3:
+		enemy = new FishMan();
+		enemy->Init(x, y, width, height);
+		break;
 	default:
 		break;
 	}
@@ -51,6 +66,11 @@ void Map::LoadObject(int id, int type, float x, float y, int width, int height)
 	{
 		ListObjects.push_back(object);
 	}
+	if (enemy != NULL)
+	{
+		ListEnemys.push_back(enemy);
+	}
+	
 	
 }
 void Map::LoadMap(string filepath)
@@ -100,9 +120,21 @@ void Map::LoadListObjectInWorld(RECT rect)
 			}
 
 	}
+
+	if (ListEnemys.size() != 0)
+	{
+		for (int i = 0; i < ListEnemys.size(); i++)
+		{
+			if (ListEnemys[i]->_x<rec.right && ListEnemys[i]->_x > rec.left)
+			{
+				ListEnemys[i]->hienthi = true;
+			}
+		}
+	}
+
 }
 
-void Map::Draw(int x, int y)
+void Map::Draw(float x, float y)
 {
 	if (quadtree->ListObjectInRect.size() != NULL)
 	{
@@ -111,11 +143,14 @@ void Map::Draw(int x, int y)
 			quadtree->ListObjectInRect[i]->Render(x,y);
 		}
 	}
-	/*bat->Render(x, y);
-	fishman->Render(x, y);
-	eagles->Render(x, y);
-	fleaman->Render(x, y);
-	bonedragones->Render(x, y);*/
+
+	for(int k=0 ; k< ListEnemys.size();k++)
+	{
+		if(ListEnemys[k]->hienthi)
+			ListEnemys[k]->Render(x,y);
+	}
+
+	
 }
 
 
@@ -125,31 +160,34 @@ void Map::Update(int time, kitty*simon)
 	{
 		for (int i = 0; i < quadtree->ListObjectInRect.size(); i++)
 		{
-			quadtree->ListObjectInRect[i]->Update(time);
+			
 			Box box(quadtree->ListObjectInRect[i]->_x - quadtree->ListObjectInRect[i]->_width / 2, quadtree->ListObjectInRect[i]->_y - quadtree->ListObjectInRect[i]->_height / 2, quadtree->ListObjectInRect[i]->_x + quadtree->ListObjectInRect[i]->_width / 2, quadtree->ListObjectInRect[i]->_y + quadtree->ListObjectInRect[i]->_height / 2, 0, 0);
-			if (quadtree->ListObjectInRect[i]->GetType() == 12)
+			if (quadtree->ListObjectInRect[i]->GetType() == 12 || quadtree->ListObjectInRect[i]->GetType() == 19)
 			{
 				Box simonBox(simon->_posx - 16, simon->_posy - 32, simon->_posx+16, simon->_posy+32, simon->_vx, simon->_vy+simon->_vg);
 				Box broadphasebox = GetSweptBroadphaseBox(simonBox, time);
-				
-
-				/*if (simon->_posy-32 < quadtree->ListObjectInRect[i]->_y+quadtree->ListObjectInRect[i]->_height/2 && simon->_posx +32 > quadtree->ListObjectInRect[i]->_x - quadtree->ListObjectInRect[i]->_width / 2 && simon->_posx <quadtree->ListObjectInRect[i]->_x + quadtree->ListObjectInRect[i]->_width / 2)
-				{
-					simon->_posy = quadtree->ListObjectInRect[i]->_y + 50;
-					simon->nhay = false;
-					simon->nhaydendocao = 0;
-					simon->postground = quadtree->ListObjectInRect[i]->_y + 50;
-					simon->CheckLoLung = false;
-				}*/
 
 					if (AABB(broadphasebox, box))
 					{
 						if (simon->_posy -32 <= quadtree->ListObjectInRect[i]->_y + quadtree->ListObjectInRect[i]->_height / 2)
 						{
-							simon->_posy = quadtree->ListObjectInRect[i]->_y + 50;
+							if (quadtree->ListObjectInRect[i]->GetType() == 12)
+							{
+								simon->_posy = quadtree->ListObjectInRect[i]->_y + 50;
+								simon->postground = quadtree->ListObjectInRect[i]->_y + 55;
+								simon->dungtrenMove = false;
+							}
+							if (quadtree->ListObjectInRect[i]->GetType() == 19)
+							{
+								simon->_posy = quadtree->ListObjectInRect[i]->_y + 42;
+								simon->postground = quadtree->ListObjectInRect[i]->_y + 42;
+								simon->dungtrenMove = true;
+								simon->_xtrenmove = quadtree->ListObjectInRect[i]->_detalx;
+							}
+							
 							simon->nhay = false;
 							simon->nhaydendocao = 0;
-							simon->postground = quadtree->ListObjectInRect[i]->_y + 55;
+							
 							simon->CheckLoLung = false;
 						}
 						
@@ -167,12 +205,12 @@ void Map::Update(int time, kitty*simon)
 					Box whip(0,0,0,0,0,0);
 					if (simon->flat==false)//ngoi danh voi hinh ben phai
 					{
-						whip = Box(simon->_posx + 16, simon->_posy, simon->_posx + 16 + 72, simon->_posy + 24, 0, 0);
+						whip = Box(simon->_posx + 16, simon->_posy, simon->_posx + 16 + 50, simon->_posy + 10, 0, 0);
 						
 					}
 					else//ngoi danh voi hinh ben trai
 					{
-						 whip = Box(simon->_posx-16-72, simon->_posy, simon->_posx -16, simon->_posy + 24, 0, 0);
+						 whip = Box(simon->_posx-16-50, simon->_posy, simon->_posx -16, simon->_posy + 10, 0, 0);
 					}
 
 					if (quadtree->ListObjectInRect[i]->GetType() == 11)
@@ -182,18 +220,19 @@ void Map::Update(int time, kitty*simon)
 							quadtree->ListObjectInRect[i]->hienthi = false;
 						}
 					}
+
 				}
 				if(simon->sprite->GetIndex() == 13)
 				{
 					Box whip(0, 0, 0, 0, 0, 0);
 					if (simon->flat == false)//ngoi danh voi hinh ben phai
 					{
-						whip = Box(simon->_posx + 16, simon->_posy, simon->_posx + 16 + 72, simon->_posy + 24, 0, 0);
+						whip = Box(simon->_posx + 16, simon->_posy, simon->_posx + 16 + 50, simon->_posy + 10, 0, 0);
 
 					}
 					else//ngoi danh voi hinh ben trai
 					{
-						whip = Box(simon->_posx - 16 - 72, simon->_posy, simon->_posx - 16, simon->_posy + 24, 0, 0);
+						whip = Box(simon->_posx - 16 - 50, simon->_posy, simon->_posx - 16, simon->_posy + 10, 0, 0);
 					}
 
 					if (quadtree->ListObjectInRect[i]->GetType() == 11)
@@ -209,13 +248,71 @@ void Map::Update(int time, kitty*simon)
 				
 
 			}
+
+			quadtree->ListObjectInRect[i]->Update(time);
 		}
 	}
-	/*bat->Update(time);
-	fishman->Update(time);
-	eagles->Update(time);
-	fleaman->Update(eagles, time);
-	bonedragones->Update(time);*/
+
+	for (int k = 0; k < ListEnemys.size(); k++)
+	{
+		if (ListEnemys[k]->hienthi == true)
+		{
+			Box box(ListEnemys[k]->_x - 32, ListEnemys[k]->_y - 32, ListEnemys[k]->_x + 32, ListEnemys[k]->_y + 32,0,0);
+			if (simon->IsActack == true)
+			{
+
+				//	Box box(quadtree->ListObjectInRect[i]->_x - quadtree->ListObjectInRect[i]->_width / 2, quadtree->ListObjectInRect[i]->_y - quadtree->ListObjectInRect[i]->_height / 2, quadtree->ListObjectInRect[i]->_x + quadtree->ListObjectInRect[i]->_width / 2, quadtree->ListObjectInRect[i]->_y + quadtree->ListObjectInRect[i]->_height / 2, 0, 0);
+
+				if (simon->sprite->GetIndex() == 16)//ngoi danh
+				{
+					Box whip(0, 0, 0, 0, 0, 0);
+					if (simon->flat == false)//ngoi danh voi hinh ben phai
+					{
+						whip = Box(simon->_posx + 16, simon->_posy, simon->_posx + 16 + 50, simon->_posy + 10, 0, 0);
+
+					}
+					else//ngoi danh voi hinh ben trai
+					{
+						whip = Box(simon->_posx - 16 - 50, simon->_posy, simon->_posx - 16, simon->_posy + 10, 0, 0);
+					}
+
+					
+						if (AABB(whip, box))
+						{
+							ListEnemys[k]->die = true;
+						}
+					
+
+				}
+				if (simon->sprite->GetIndex() == 13)
+				{
+					Box whip(0, 0, 0, 0, 0, 0);
+					if (simon->flat == false)//ngoi danh voi hinh ben phai
+					{
+						whip = Box(simon->_posx + 16, simon->_posy, simon->_posx + 16 + 50, simon->_posy + 10, 0, 0);
+
+					}
+					else//ngoi danh voi hinh ben trai
+					{
+						whip = Box(simon->_posx - 16 - 50, simon->_posy, simon->_posx - 16, simon->_posy + 10, 0, 0);
+					}
+
+					
+						if (AABB(whip, box))
+						{
+							ListEnemys[k]->die = true;
+						}
+					
+				}
+
+
+
+
+			}
+			ListEnemys[k]->Update(time);
+		}
+		
+	}
 }
 
 
@@ -275,8 +372,14 @@ Map::~Map()
 			ListObjects[i] = NULL;
 		}
 	ListObjects.clear();
-	/*delete eagles;
-	delete bat;
-	delete fishman;
-	delete fleaman;*/
+	for (int  i = 0; i < ListEnemys.size(); i++)
+	{
+		if (ListEnemys[i])
+		{
+			delete ListEnemys[i];
+			ListEnemys[i] = NULL;
+		}
+	}
+
+	ListEnemys.clear();
 }

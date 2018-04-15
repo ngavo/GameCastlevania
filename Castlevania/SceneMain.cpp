@@ -92,6 +92,7 @@ void SceneMain::OnKeyDown(int KeyCode)
 		if (this->_kitty->CheckLoLung == false)
 		{
 			this->_kitty->nhay = true;
+			this->_kitty->dungtrenMove = false;
 			this->_kitty->_vy = 1;
 			this->_kitty->nhaydendocao = this->_kitty->_posy + 100;
 			this->_kitty->PosIndex(4);
@@ -101,7 +102,8 @@ void SceneMain::OnKeyDown(int KeyCode)
 	}
 	if (KeyCode== DIK_F)
 	{
-		this->_kitty->Actack();
+		if(this->_kitty->IsActack==false)
+			this->_kitty->Actack();
 	}
 }
 void SceneMain::OnKeyUp(int KeyCode)

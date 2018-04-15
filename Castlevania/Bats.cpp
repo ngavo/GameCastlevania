@@ -15,7 +15,7 @@ void Bats::Update(int time)
 	{
 		a += 0.3;
 		this->_x = this->_x - 0.9*time;
-		this->_y = 20 * sin(a) + 100;
+		this->_y =  5 * sin(a) + this->_y;
 		sprite->Next();
 		last_time = now;
 	}
@@ -36,15 +36,19 @@ void Bats::Init(float x, float y, int width, int height)
 
 void Bats::Render(float x, float y)
 {
-	D3DXVECTOR2 view;
-	view.x = x;
-	view.y = y;
-	camera->setViewPort(view);
-	D3DXVECTOR2 _pos = camera->Transform(this->_x, this->_y);
-	G_SpriteHandler->Begin(D3DXSPRITE_SORT_DEPTH_FRONTTOBACK | D3DXSPRITE_ALPHABLEND);
+	if (this->die==false)
+	{
+		D3DXVECTOR2 view;
+		view.x = x;
+		view.y = y;
+		camera->setViewPort(view);
+		D3DXVECTOR2 _pos = camera->Transform(this->_x, this->_y);
+		G_SpriteHandler->Begin(D3DXSPRITE_SORT_DEPTH_FRONTTOBACK | D3DXSPRITE_ALPHABLEND);
 
-	sprite->Draw(_pos.x, _pos.y);
-	G_SpriteHandler->End();
+		sprite->Draw(_pos.x, _pos.y);
+		G_SpriteHandler->End();
+	}
+	
 
 }
 

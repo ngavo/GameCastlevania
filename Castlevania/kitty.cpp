@@ -19,6 +19,7 @@ kitty::kitty()
 	IsDown = false;
 	befornhay = false;
 	CheckLoLung = false;
+	dungtrenMove = false;
 	//chamdat = false;
 }
 
@@ -27,6 +28,10 @@ void kitty::Update(int time)
 	
 	
 	/*this->_posy = this->_posy - this->_vg*time;*/
+	if (this->dungtrenMove == true)
+	{
+		this->_posx = this->_posx + this->_xtrenmove;
+	}
 	 
 	this->_posy = this->_posy + this->_vy*time + this->_vg*time;
 
@@ -90,15 +95,15 @@ void kitty::ThucHienActack(int start, int end)
 	DWORD now = GetTickCount();
 	sprite->GetStart(start);
 	sprite->GetEnd(end);
-
+	
 		if (now - last_time > 1000 / 8)
 		{
-
+			
 			last_time = now;
-			sprite->Next();
+			
 			if (this->IsDown == true)
 			{
-				if (sprite->GetIndex() == 14)
+				/*if (sprite->GetIndex() == 14)
 				{
 					_whip->SetIndex(0);
 				}
@@ -109,13 +114,47 @@ void kitty::ThucHienActack(int start, int end)
 				if (sprite->GetIndex() == 16)
 				{
 					_whip->SetIndex(2);
+				}*/
+
+				if (CountSpriteActtack == 0)
+				{
+					sprite->SelectIndex(14);
+					_whip->SetIndex(0);
 				}
+				if (CountSpriteActtack == 1)
+				{
+					sprite->SelectIndex(15);
+					_whip->SetIndex(1);
+				}
+
+				if (CountSpriteActtack == 2)
+				{
+					sprite->SelectIndex(16);
+					_whip->SetIndex(2);
+				}
+
 			}
 			else
 			{
-				if (sprite->GetIndex() == 11)
+				if (CountSpriteActtack == 0)
 				{
+					sprite->SelectIndex(11);
 					_whip->SetIndex(0);
+				}
+				if (CountSpriteActtack == 1)
+				{
+					sprite->SelectIndex(12);
+					_whip->SetIndex(1);
+				}
+				
+				if (CountSpriteActtack == 2)
+				{
+					sprite->SelectIndex(13);
+					_whip->SetIndex(2);
+				}
+				/*if (sprite->GetIndex() == 11)
+				{
+					
 				}
 				if (sprite->GetIndex() == 12)
 				{
@@ -124,12 +163,18 @@ void kitty::ThucHienActack(int start, int end)
 				if (sprite->GetIndex() == 13)
 				{
 					_whip->SetIndex(2);
-				}
+				}*/
 			}
-			
-			CheckActack();
 
+			
+			
+		//	sprite->SelectIndex(sprite->GetIndex()-1);
+			CheckActack();
+			
+			
 		}
+
+	//	sprite->Next();
 	
 	
 }
@@ -153,7 +198,7 @@ void kitty::CheckActack()
 	}
 	else
 	{
-		CountSpriteActtack++;
+		CountSpriteActtack = CountSpriteActtack+1;
 	}
 }
 void kitty::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
@@ -163,16 +208,27 @@ void kitty::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 	G_SpriteHandler->Begin(D3DXSPRITE_SORT_DEPTH_FRONTTOBACK | D3DXSPRITE_ALPHABLEND);
 	if (this->flat == false)
 	{
-		
+			
 			sprite->Draw(_pos.x, _pos.y);
-			if(IsActack==true)
-			_whip->Draw(_pos.x, _pos.y);
+			if (IsActack == true)
+			{
+				
+				_whip->Draw(_pos.x, _pos.y);
+			
+			}
+			
 	}
 	else
 	{
+		
 		sprite->DrawFlipX(_pos.x, _pos.y);
-		if(IsActack==true)
-		_whip->DrawFlip(_pos.x, _pos.y);
+		if (IsActack == true)
+		{
+			
+			_whip->DrawFlip(_pos.x, _pos.y);
+			
+		}
+		
 	}
 	G_SpriteHandler->End();
 	
@@ -203,9 +259,9 @@ void kitty::Jumb()
 void kitty::Actack()
 {
 	if (this->IsDown == true)
-		this->PosIndex(13);
+		this->PosIndex(14);
 	if(this->IsDown==false)
-		this->PosIndex(10);
+		this->PosIndex(11);
 	this->IsActack = true;
 	this->_vx = 0;
 }
